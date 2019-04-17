@@ -1,0 +1,54 @@
+DROP DATABASE if exists CLIENTE;
+CREATE DATABASE if not exists CLIENTE;
+USE CLIENTE;
+
+CREATE TABLE CLIENTE (
+    id_cliente INT NOT NULL auto_increment,
+    tipo VARCHAR(10) NOT NULL,
+    temGestorConta BOOLEAN NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    morada VARCHAR(255) NOT NULL,
+    telefone INT NULL,
+    email VARCHAR(25) NULL,
+    profissao VARCHAR(15) NULL,
+    id_conta INT NOT NULL,
+    id_cartao INT NOT NULL,
+    PRIMARY KEY(id_cliente),
+    FOREIGN KEY(id_conta),
+    FOREIGN KEY(id_cartao));
+
+INSERT INTO CLIENTE.CLIENTE VAlUES
+('VIP', true, 'MARIA', 'RUA X', NULL, NULL, NULL, 1, 1),
+('NORMAL', false, 'BRUNO', 'RUA Y', NULL, NULL, NULL, 2, 2);
+
+DROP DATABASE if exists CARTAO;
+CREATE DATABASE if not exists CARTAO;
+USE CARTAO;
+
+CREATE TABLE CARTAO (
+    id_cartao INT NOT NULL auto_increment,
+    numero VARCHAR(12) NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
+    PRIMARY KEY(id_cartao));
+
+INSERT INTO CARTAO.CARTAO VAlUES
+('539225222356', 'DEBITO'),
+('539025552358', 'CREDITO');
+
+DROP DATABASE if exists CONTA;
+CREATE DATABASE if not exists CONTA;
+USE CONTA;
+
+CREATE TABLE CONTA (
+    id_conta INT NOT NULL auto_increment,
+    numero INT NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
+    valor DOUBLE NOT NULL,
+    temRemuneracao BOOLEAN NOT NULL,
+    temCartao BOOLEAN NOT NULL,
+    valorRemuneracao DOUBLE NOT NULL,
+    PRIMARY KEY(id_conta));
+
+INSERT INTO CONTA.CONTA VAlUES
+(25545, 'CONTA ORDEM', 205.50, false, true, 10),
+(33254, 'CONTA POUPANCA', 504.86, true, true, 5);
